@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="937416447833-83q2rf5d3d4cuafle231davcev3ane60.apps.googleusercontent.com">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link href="/layout/style.css" rel="stylesheet" type="text/css" />
+
+    <title>LT Life | Food</title>
+    <meta name="description" content="Health Related Search Engine.">
+  </head>
+
+  <body id="top">
+    <main>
+    <div class="bg overlay" style="background-image:url('/images/salad.jpg');">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="/index.html" class="brand-logo"><span id="leafy" class="material-icons">eco</span>LT Life</a>
+          <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+           <li><a href="/pages/food.html">Food</a></li>
+           <li><a href="/pages/fitness.html">Fitness</a></li>
+           <li><a href="/pages/meditation.html">Meditation</a></li>
+           <li><a id="loginbtn" class="g-signin2" data-onsuccess="onSignIn" data-theme="light">Login</a></li>
+         </ul>
+       </div>
+     </nav>
+
+     <div id="pageintro" class = "hoc clear">
+       <article>
+         <h3 class="heading">Let's Talk Food</h3>
+        <p>
+          Healthy recipes picked by you.</p>
+        <a id="helpbtn" class="waves-effect waves-light btn-small modal-trigger" href="#modal3">How to Use</a><br>
+       </article>
+     </div>
+
+    </div>
+
+    <ul class="sidenav" id="mobile-menu">
+      <li><a id="loginbtn2" class="g-signin2" data-onsuccess="onSignIn" data-theme="light"></a></li>
+      <li><a href="/index.html"><i class="material-icons">home</i>Home</a></li>
+      <li><a href="/pages/food.html" style="color: rgba(76,176,80)"><i class="material-icons" style="color: rgba(76,176,80)">local_dining</i>Food</a></li>
+      <li><a href="/pages/fitness.html"><i class="material-icons">fitness_center</i>Fitness</a></li>
+      <li><a href="/pages/meditation.html"><i class="material-icons">visibility</i>Meditation</a></li>
+    </ul>
+
+    <div class="searching">
+      <h4>Recipe Search</h4>
+      <p>Please enter your preferences to get started: </p>
+       <form class="col s12">
+         <div class="searchrow">
+           <div class="col s12">
+             Include:
+             <a id="incbtn" class="waves-effect waves-light btn-small green right" onclick="addInclusion()">+</a>
+             <div class="input-field inline">
+               <input id="inclusion" type="text" class="validate">
+               <label for="inclusion">Ingredient</label>
+               <span class="helper-text" data-error="Invalid entry." data-success="Ingredient included."></span>
+             </div>
+           </div>
+         </div>
+         <div class="searchrow">
+           <div class="col s12">
+             Exclude:
+             <a id="excbtn" class="waves-effect waves-light btn-small green right" onclick="addExclusion()">+</a>
+             <div class="input-field inline">
+               <input id="exclusion" type="text" class="validate">
+               <label for="exclusion">Ingredient</label>
+               <span class="helper-text" data-error="Invalid entry." data-success="Ingredient excluded."></span>
+             </div>
+           </div>
+         </div>
+       </form>
+       <a id="mgbtn" class="waves-effect waves-light btn-small modal-trigger" href="#modal2">Manage Ingredients</a><br>
+       <a id="opbtn" class="waves-effect waves-light btn-small modal-trigger" href="#modal1">Advanced Options</a><br>
+       <a id="searchbtn" class="waves-effect waves-light btn-large green"><i class="material-icons left">search</i>SEARCH</a>
+     </div>
+     <div class="container">
+       <div>
+
+       </div>
+       <div id="searchResults"></div>
+     </div>
+     <a class="btn-floating btn-large waves-effect waves-light" onclick="topFunction()" id="scrollBtn"><i class="material-icons">arrow_upward</i></a>
+
+     <div id="modal2" class="modal">
+       <div class="modal-content">
+         <h4>Manage Ingredients:</h4>
+         <p>Including:</p>
+         <div id="mnginc" class="container">
+         </div>
+         <br>
+         <p>Excluding:</p>
+         <div id="mngexc" class="container">
+         </div>
+       </div>
+       <div class="modal-footer">
+         <a href="#!" class="waves-effect waves-light btn green" onclick="clearIngredients()">Clear</a>
+         <a href="#!" class="modal-close waves-effect waves-light btn green">OK</a>
+       </div>
+     </div>
+
+     <div id="modal1" class="modal">
+         <div class="modal-content">
+           <h4>Advanced Options</h4>
+           <p>Preferences: </p>
+           <p>
+             <label>
+               <input type="checkbox" class="filled-in" id="vegeStat" onclick="setStatus()">
+               <span>Vegetarian</span>
+             </label>
+           </p>
+           <p>
+             <label>
+               <input type="checkbox" class="filled-in" id="pescStat" onclick="setStatus()">
+               <span>Pescatarian</span>
+             </label>
+           </p>
+           <p>
+             <label>
+               <input type="checkbox" class="filled-in" id="veganStat" onclick="setStatus()">
+               <span>Vegan</span>
+             </label>
+           </p>
+           <p>
+             <label>
+               <input type="checkbox" class="filled-in" id="porkStat" onclick="setStatus()">
+               <span>Pork-free</span>
+             </label>
+           </p>
+           <p>
+             <label>
+               <input type="checkbox" class="filled-in" id="kosherStat" onclick="setStatus()">
+               <span>Kosher</span>
+             </label>
+           </p>
+           <p>Allergy Options: </p>
+           <p>
+             <label>
+               <input type="checkbox" class="filled-in" id="dairyStat" onclick="setStatus()">
+               <span>Dairy-free</span>
+             </label>
+           </p>
+           <p>
+             <label>
+               <input type="checkbox" class="filled-in" id="peanutStat" onclick="setStatus()">
+               <span>Peanut-free</span>
+             </label>
+           </p>
+           <p>
+             <label>
+               <input type="checkbox" class="filled-in" id="shellStat" onclick="setStatus()">
+               <span>Shellfish-free</span>
+             </label>
+           </p>
+           <p>Health Options: </p>
+           <p>
+             <label>
+               <input type="checkbox" class="filled-in" id="ketoStat" onclick="setStatus()">
+               <span>Keto</span>
+             </label>
+           </p>
+           <p>
+             <label>
+               <input type="checkbox" class="filled-in" id="balancedStat" onclick="setStatus()">
+               <span>Balanced</span>
+             </label>
+           </p>
+           <p>
+             <label>
+               <input type="checkbox" class="filled-in" id="protStat" onclick="setStatus()">
+               <span>High-Protein</span>
+             </label>
+           </p>
+           <p>
+             <label>
+               <input type="checkbox" class="filled-in" id="carbStat" onclick="setStatus()">
+               <span>Low-Carb</span>
+             </label>
+           </p>
+           <p>
+             <label>
+               <input type="checkbox" class="filled-in" id="fatStat" onclick="setStatus()">
+               <span>Low-Fat</span>
+             </label>
+           </p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-light btn green">OK</a>
+        </div>
+      </div>
+      <div id="modal3" class="modal">
+         <div class="modal-content">
+            <h4>How to Use</h4>
+            <p>
+              <b>Instructions:</b><br><br>
+              1. Enter any ingredient(s) you would like to be in the recipe in the "Include" field and press the <span style="color:#4caf50">green +</span> button. Multiple ingredients can be included. (Types of dishes can also be entered. e.g. "soup")<br><br>
+              2. Enter any ingredient(s) you would like to be excluded from the recipe in the "Exclude" field and press the <span style="color:#4caf50">green +</span> button. (Types of dishes cannot be excluded.)<br><br>
+              3. The <span style="color:#4caf50">Manage Ingredients</span> button can be used to keep track of what you are currently searching for."<br><br>
+              4. Under <span style="color:#4caf50">Advanced Options</span> select any preferences you may have for the recipes you would like to see and press "OK" to confirm your selection.<br><br>
+              5. Press <span style="color:#4caf50">Search</span> to see the results of the criteria you have entered.<br><br>
+            </p>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-light btn green">GOT IT</a>
+            </div>
+          </div>
+      </div>
+      <div id="edamama">
+        <a href="https://developer.edamam.com/edamam-recipe-api" title="Edamam" target="_blank">
+            <img alt="Powered by Edamam" src="https://developer.edamam.com/images/white.png" height="30" width="100">
+        </a>
+      </div>
+    </main>
+
+    <footer>
+      <p><i class="material-icons">email</i> ltlifeteam@gmail.com<i class="material-icons">phone</i> 1-868-555-1234</p>
+    </footer>
+
+    <script src="/foodscr.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://developer.edamam.com/attribution/badge.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $('.sidenav').sidenav();
+      })
+
+      $(".dropdown-trigger").dropdown();
+
+      $(document).ready(function(){
+        $('.modal').modal();
+      });
+
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      }
+    </script>
+    
+  </body>
+</html>

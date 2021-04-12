@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="937416447833-83q2rf5d3d4cuafle231davcev3ane60.apps.googleusercontent.com">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link href="/layout/style.css" rel="stylesheet" type="text/css" />
+
+    <title>LT Life</title>
+    <meta name="description" content="Health Related Search Engine.">
+  </head>
+
+  <body id="top">
+    <main>
+    <div class="bg overlay" style="background-image:url('/images/salad.jpg');">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="/index.html" class="brand-logo"><span id="leafy" class="material-icons">eco</span>LT Life</a>
+          <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+           <li><a href="/pages/food.html">Food</a></li>
+           <li><a href="/pages/fitness.html">Fitness</a></li>
+           <li><a href="/pages/meditation.html">Meditation</a></li>
+           <li><a id="loginbtn" class="g-signin2" data-onsuccess="onSignIn" data-theme="light">Login</a></li>
+         </ul>
+       </div>
+     </nav>
+
+     <div id="pageintro" class = "hoc clear">
+       <article>
+         <h3 class="heading">Let's Talk Fitness</h3>
+        <p>We're here to help on your journey.</p>
+        <a id="helpbtn" class="waves-effect waves-light btn-small modal-trigger" href="#modal4">How to Use</a><br>
+       </article>
+     </div>
+
+    </div>
+
+    <ul class="sidenav" id="mobile-menu">
+      <li><a id="loginbtn2" class="g-signin2" data-onsuccess="onSignIn" data-theme="light"></a></li>
+      <li><a href="/index.html"><i class="material-icons">home</i>Home</a></li>
+      <li><a href="/pages/food.html"><i class="material-icons">local_dining</i>Food</a></li>
+      <li><a href="/pages/fitness.html" style="color: rgba(76,176,80)"><i class="material-icons" style="color: rgba(76,176,80)">fitness_center</i>Fitness</a></li>
+      <li><a href="/pages/meditation.html"><i class="material-icons">visibility</i>Meditation</a></li>
+    </ul>
+
+    <div class="workout">
+      <h4>BMI Calculator</h4>
+      <form class="col s12">
+        <div class="searchrow">
+          <div class="col s12">
+          Weight (lbs) :
+            <div class="input-field inline">
+              <input id="weight_inline" name="weight" type="number" step="any" class="validate" required>
+            </div>
+          </div>
+        </div>
+        <div class="searchrow">
+          <div class="col s12">
+            Height (cm) :
+              <div class="input-field inline">
+                <input id="height_inline" name="height" type="number" step="any" class="validate" required>
+              </div>
+          </div>
+        </div>
+        <a id="calcbtn" class="btn waves-effect waves-light green" onclick="calcBMI()">Calculate
+          <i class="material-icons right">arrow_forward</i>
+        </a>
+      </form>
+      <div id="bmiresult"></div>
+    </div>
+
+    <div id="modal4" class="modal">
+         <div class="modal-content">
+            <h4>How to Use</h4>
+            <p>
+              <b>Instructions:</b><br><br>
+              1. Enter your weight in pounds (lbs) in the relevant field.<br><br>
+              2. Enter your height in centimetres (cm) in the relevant field<br><br>
+              3. Press the <span style="color:#4caf50">Calculate</span> to see your BMI based on the information you have input along with an comment on what this number means for you.
+            </p>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-light btn green">GOT IT</a>
+            </div>
+          </div>
+      </div>
+      </main>
+    
+    <footer>
+      <p><i class="material-icons">email</i> ltlifeteam@gmail.com<i class="material-icons">phone</i> 1-868-555-1234</p>
+    </footer>
+
+    <script src="/fitscr.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $('.sidenav').sidenav();
+      })
+
+      $(".dropdown-trigger").dropdown();
+
+      $(document).ready(function(){
+        $('.modal').modal();
+      });
+
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      }
+    </script>
+    
+  </body>
+</html>

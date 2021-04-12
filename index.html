@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="937416447833-83q2rf5d3d4cuafle231davcev3ane60.apps.googleusercontent.com">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link href="layout/style.css" rel="stylesheet" type="text/css" />
+
+    <title>LT Life</title>
+    <meta name="description" content="Find the best healthy recipes, keep in shape and start living a healthy life today.">
+  </head>
+
+  <body id="top">
+    <div class="bg overlay" style="background-image:url('images/salad.jpg');">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="index.html" class="brand-logo"><span id="leafy" class="material-icons">eco</span>LT Life</a>
+          <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+           <li><a href="/pages/food.html">Food</a></li>
+           <li><a href="/pages/fitness.html">Fitness</a></li>
+           <li><a href="/pages/meditation.html">Meditation</a></li>
+           <li><a id="loginbtn" class="g-signin2" data-onsuccess="onSignIn" data-theme="light">Login</a></li>
+         </ul>
+       </div>
+     </nav>
+
+     <div id="pageintro" class = "hoc clear">
+       <article>
+         <h3 class="heading">WELCOME TO LT LIFE</h3>
+        <p>Healthy living made simple.</p>
+       </article>
+     </div>
+
+    </div>
+
+    <ul class="sidenav" id="mobile-menu">
+      <li><a id="loginbtn2" class="g-signin2" data-onsuccess="onSignIn" data-theme="light"></a></li>
+      <li><a href="index.html" style="color: rgba(76,176,80)"><i class="material-icons" style="color: rgba(76,176,80)">home</i>Home</a></li>
+      <li><a href="pages/food.html"><i class="material-icons">local_dining</i>Food</a></li>
+      <li><a href="/pages/fitness.html"><i class="material-icons">fitness_center</i>Fitness</a></li>
+      <li><a href="/pages/meditation.html"><i class="material-icons">visibility</i>Meditation</a></li>
+    </ul>
+
+    <div class="wrapper row3">
+      <main class="hoc container1 clear">
+
+        <section id="introblocks">
+          <ul class="nospace group btmspace-80">
+            <li class="one_third first">
+              <figure><a class="imgover" href="/pages/food.html"><img src="images/letstalkfood.jpg" alt="Vegetables"></a>
+                <figcaption>
+                  <h6 class="heading">Let's Talk Food</h6>
+                  <p>Healthy eating finetuned to your personal tastes. Discover dozens of recipes catered specifically to your dietary needs.</p>
+                </figcaption>
+              </figure>
+            </li>
+            <li class="one_third">
+              <figure><a class="imgover" href="/pages/fitness.html"><img src="images/fitness.jpg" alt="Weights"></a>
+                <figcaption>
+                  <h6 class="heading">Let's Talk Fitness</h6>
+                  <p>Utilise our BMI calculator to keep track of your health on your fitness journey.</p>
+                </figcaption>
+              </figure>
+            </li>
+            <li class="one_third">
+              <figure><a class="imgover" href="/pages/meditation.html"><img src="images/meditation.jpg" alt="Meditate"></a>
+                <figcaption>
+                  <h6 class="heading">Let's Talk Meditation</h6>
+                  <p>A sound body is nothing without a sound mind. Keep your cool with some of these handy meditation tips.</p>
+                </figcaption>
+              </figure>
+            </li>
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <p><i class="material-icons">email</i> ltlifeteam@gmail.com<i class="material-icons">phone</i> 1-868-555-1234</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $('.sidenav').sidenav();
+      })
+
+      $(".dropdown-trigger").dropdown();
+
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      }
+    </script>
+    
+  </body>
+</html>
